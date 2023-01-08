@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    div{
+    color: blue;
+    font-size: 15px;
+}
+h1 {
+    text-align: center;
+    font-size: 100px;
+    text-shadow: 6px 6px 6px rgb(73, 72, 72);
+}
+body {
+    background-image: url("dane_tlo.jpg");
+}
+</style>
+</head>
+<body>
+    <h1>DANE</h1>
+    <br><br><br><br>
+    
+    <div id="dane"></div>
+
+<script>
+       const dataContainer = document.getElementById("dane");
+   
+         fetch("https://my.api.mockaroo.com/Group_project.json?key=77a5f290")
+           .then(response => response.json())
+           .then(data => {
+             dataContainer.innerHTML = JSON.stringify(data);
+           });
+       
+</script>
+</body>
+</html>
