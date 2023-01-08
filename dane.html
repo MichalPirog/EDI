@@ -1,36 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
-    div{
-    color: blue;
+  div{
+    color: rgb(0, 99, 141);
     font-size: 15px;
 }
-h1 {
+
+  h1 {
     text-align: center;
     font-size: 100px;
     text-shadow: 6px 6px 6px rgb(73, 72, 72);
 }
-body {
+
+  body {
     background-image: url("dane_tlo.jpg");
 }
+
+  #tabela {
+    border: 3px solid;
+}
+
+  #tabela td, #tabela th {
+    border: 1px solid rgb(0, 40, 10);
+    padding: 8px;
+}
+
+#tabela tr:nth-child(even){background-color:rgb(219, 234, 242);}
+
+#tabela tr:hover {background-color:  rgb(174, 245, 193);}
 </style>
 </head>
+
 <body>
     <h1>DANE</h1>
     <br><br><br><br>
     
-    <div id="dane"></div>
+<div class = "container-fluid">
 
-<script>
-       const dataContainer = document.getElementById("dane");
-   
-         fetch("https://my.api.mockaroo.com/Group_project.json?key=77a5f290")
-           .then(response => response.json())
-           .then(data => {
-             dataContainer.innerHTML = JSON.stringify(data);
-           });
-       
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>title</th>
+    <th>price</th>
+    <th>platform</th>
+    <th>type</th>
+    <th>genre</th>
+    <th>developer</th>
+    <th>release_date</th>
+    <th>DLC</th>
+    <th>polish_language</th>
+    <th>required_RAM</th>
+    <th>achievements</th>
+    <th>controller_support</th>
+    <th>rating</th>
+  </tr>
+  </thead>
+
+  <tbody id="tabela">
+    <script>
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET","https://my.api.mockaroo.com/Group_project.json?key=77a5f290",true);
+      xmlhttp.send();
+      xmlhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+          var dane = JSON.parse(this.responseText);
+    
+        function buildTable(dane){
+            var tabelka = document.getElementById('tabela')
+
+            for (var i = 0; i < dane.length; i++){
+                var rzad = `<tr>
+                  <td>${dane[i].id}</td>
+                  <td>${dane[i].title}</td>
+                  <td>${dane[i].price}</td>
+                  <td>${dane[i].platform}</td>
+                  <td>${dane[i].type}</td>
+                  <td>${dane[i].genre}</td>
+                  <td>${dane[i].developer}</td>
+                  <td>${dane[i].release_date}</td>
+                  <td>${dane[i].DLC}</td>
+                  <td>${dane[i].polish_language}</td>
+                  <td>${dane[i].required_RAM}</td>
+                  <td>${dane[i].achievements}</td>
+                  <td>${dane[i].controller_support}</td>
+                  <td>${dane[i].rating}</td>
+                </tr>`
+                tabelka.innerHTML += rzad;    
+            } 
+        }
+    
+    buildTable(dane)
+    
+    }
+}
+
 </script>
+</tbody>
+</table>
+</div>
 </body>
 </html>
