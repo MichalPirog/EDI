@@ -51,23 +51,9 @@ div{
 <br><br><br><br>
 
 
-<button id="przy_dane">DANE</button>
+<button id="przycisk">DANE</button>
 <button href="">WYKRES</button>
 
-<div id="dane"></div>
-
-<script>
- const getDataButton = document.getElementById("przy_dane");
-    const dataContainer = document.getElementById("dane");
-
-    getDataButton.addEventListener("click", () => {
-      fetch("https://my.api.mockaroo.com/Group_project.json?key=77a5f290")
-        .then(response => response.json())
-        .then(data => {
-          dataContainer.innerHTML = JSON.stringify(data);
-        });
-    });
-</script>
 
 </body>
 </html>
