@@ -6,7 +6,7 @@ body {
     background-image: url("tło.png");
 }
 
-.button {
+button {
   background-color: #ffffff;
   border: none;
   color: #000000;
@@ -36,6 +36,11 @@ h1 {
     font-size: 100px;
     text-shadow: 6px 6px 6px rgb(73, 72, 72);
 }
+
+div{
+    color: yellow;
+    font-size: 15px;
+}
 </style>
 </head>
 <body>
@@ -46,10 +51,23 @@ h1 {
 <br><br><br><br>
 
 
-<a href="" class="button">DANE</a>
-<a href="" class="button">WYKRES</a>
+<button id="przy_dane">DANE</button>
+<button href="">WYKRES</button>
 
+<div id="dane"></div>
 
+<script>
+ const getDataButton = document.getElementById("przy_dane");
+    const dataContainer = document.getElementById("dane");
+
+    getDataButton.addEventListener("click", () => {
+      fetch("https://my.api.mockaroo.com/Group_project.json?key=77a5f290")
+        .then(response => response.json())
+        .then(data => {
+          dataContainer.innerHTML = JSON.stringify(data);
+        });
+    });
+</script>
 
 </body>
 </html>
